@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine 💖</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    overflow:hidden;
+    background: linear-gradient(-45deg,#ff0080,#ff8c00,#40e0d0,#ff4d6d,#9d4edd);
+    background-size: 500% 500%;
+    animation: gradient 12s ease infinite;
+}
+
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.card{
+    background:rgba(255,255,255,0.15);
+    padding:40px;
+    border-radius:30px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 40px rgba(255,0,150,0.8);
+    position:relative;
+    animation: fadeIn 1.5s ease;
+}
+
+h1{
+    color:white;
+    font-size:40px;
+    margin-bottom:30px;
+    text-shadow:0 0 15px #ff00aa;
+}
+
+button{
+    padding:12px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    margin:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.yes{
+    background:linear-gradient(45deg,#ff0055,#ff66a3);
+    color:white;
+    box-shadow:0 0 20px #ff4d6d;
+}
+
+.no{
+    background:white;
+    color:#ff0055;
+    position:absolute;
+}
+
+button:hover{
+    transform:scale(1.15);
+}
+
+.proposal{
+    color:white;
+    padding:30px;
+    animation: zoom 1.5s ease;
+}
+
+.proposal h1{
+    font-size:45px;
+    text-shadow:0 0 20px #ff00cc;
+}
+
+.proposal p{
+    font-size:22px;
+    margin-top:20px;
+    line-height:1.6;
+    text-shadow:0 0 10px #ff66cc;
+}
+
+.proposal img{
+    width:260px;
+    margin-top:25px;
+    border-radius:25px;
+    box-shadow:0 0 30px #ff1493;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+
+@keyframes zoom{
+    from{opacity:0; transform:scale(0.5);}
+    to{opacity:1; transform:scale(1);}
+}
+
+/* Floating Hearts */
+.heart{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:red;
+    transform:rotate(45deg);
+    animation: float 6s linear infinite;
+}
+
+.heart:before,
+.heart:after{
+    content:"";
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:red;
+    border-radius:50%;
+}
+
+.heart:before{
+    top:-10px;
+    left:0;
+}
+
+.heart:after{
+    left:-10px;
+    top:0;
+}
+
+@keyframes float{
+    0%{bottom:-50px; opacity:1;}
+    100%{bottom:100%; opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>💖 Will You Be My Valentine? 💖</h1>
+    <button class="yes" onclick="showProposal()">Yes 💕</button>
+    <button class="no" id="noBtn">No 💔</button>
+</div>
+
+<script>
+
+// Floating hearts
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},6000);
+}
+setInterval(createHeart,400);
+
+// YES button
+function showProposal(){
+    document.body.innerHTML=`
+    <div class="proposal">
+        <h1>💞 You Said YES! 💞</h1>
+        <p>
+        Happy Valentine’s Day di thangoo ❤️
+        Edhukkagavum feel pannadha kuttyma…
+        Un sirippu dhaan en biggest happiness ☀️
+        Un azhudhadhum enakku thaanga mudiyadhu 💔
+        Nee sandhoshamaa irukanum na enna venumnaalum panniduven…
+        Kastam vandhaalum kai vida maatten…
+        Un kooda dhaan en future, dreams, life ellam 🥰
+        Love you forever and ever di… ennoda kuttyma 😘💍
+        </p>
+        <img src="bubu dudu.jpg" alt="Cute Cartoon Couple">
+    </div>
+    `;
+}
+
+// NO button moves randomly
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener("click",moveButton);
+
+function moveButton(){
+    const maxX=window.innerWidth-noBtn.offsetWidth;
+    const maxY=window.innerHeight-noBtn.offsetHeight;
+    noBtn.style.left=Math.random()*maxX+"px";
+    noBtn.style.top=Math.random()*maxY+"px";
+}
+</script>
+
+</body>
+</html>
